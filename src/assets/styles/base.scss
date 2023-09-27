@@ -9,3 +9,10 @@
 body {
   min-height: 100vh;
 }
+
+button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  transition: all 0.4s linear;
+}
