@@ -14,7 +14,12 @@ const startValue: Ref<number> = ref(0);
 const postsList: Ref<Card[]> = ref([]);
 const isLoading: Ref<boolean> = ref(false);
 
-const getAdditionalDataForCards = async <T extends Photo & Author>(idsSet: Set<number>, hashObj: {[key: number]: any}, pathPart: `/${string}?`, fieldForAdd: keyof T): Promise<void> => {
+const getAdditionalDataForCards = async <T extends Photo & Author>(
+    idsSet: Set<number>, 
+    hashObj: {[key: number]: any}, 
+    pathPart: `/${string}?`, 
+    fieldForAdd: keyof T
+): Promise<void> => {
     let path: string = pathPart;
 
     idsSet.forEach((id: number) => {
@@ -72,7 +77,12 @@ addPosts();
         <PostsListItem v-for="post of postsList" :key="post.id" :post="post" />
     </ul>
     <BaseLoader class="loader" v-if="isLoading" />
-    <BaseBtn class="postsList__btn" v-else-if="postsList.length < 30" @click="addPosts" type="button">ЗАГРУЗИТЬ ЕЩЕ</BaseBtn>
+    <BaseBtn 
+        class="postsList__btn" 
+        v-else-if="postsList.length < 30" 
+        @click="addPosts" 
+        type="button"
+    >ЗАГРУЗИТЬ ЕЩЕ</BaseBtn>
 </section>
 </template>
 
@@ -81,11 +91,15 @@ addPosts();
     padding: 134px 100px 256px;
 
     @media (max-width: 1919px) {
-        padding: 44px 40px 156px;
+        & {
+            padding: 44px 40px 156px;
+        }
     }
 
-    @media (max-width: 764px) {
-        padding: 48px 16px 43px;
+    @media (max-width: 767px) {
+        & {
+            padding: 48px 16px 43px;
+        }
     }
 }
 
@@ -100,14 +114,18 @@ addPosts();
     text-transform: uppercase;
 
     @media (max-width: 1919px) {
-        margin-bottom: 40px;
-        padding-left: 9px;
+        & {
+            margin-bottom: 40px;
+            padding-left: 9px;
+        }
     }
 
-    @media (max-width: 764px) {
-        margin-bottom: 30px;
-        padding-left: 0;
-        font-size: 20px;
+    @media (max-width: 767px) {
+        & {
+            margin-bottom: 30px;
+            padding-left: 0;
+            font-size: 20px;
+        }
     }
 }
 
@@ -118,15 +136,19 @@ addPosts();
     grid-gap: 30px;
 
     @media (max-width: 1919px) {
-        grid-template-columns: repeat(2, 1fr);
-        row-gap: 24px;
-        column-gap: 20px;
+        & {
+            grid-template-columns: repeat(2, 1fr);
+            row-gap: 24px;
+            column-gap: 20px;
+        }
     }
 
-    @media (max-width: 764px) {
-        grid-template-columns: repeat(1, 1fr);
-        grid-gap: 20px;
-        margin-bottom: 38px;
+    @media (max-width: 767px) {
+        & {
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 20px;
+            margin-bottom: 38px;
+        }
     }
 }
 

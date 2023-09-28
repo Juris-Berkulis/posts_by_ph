@@ -62,14 +62,18 @@ defineEmits(['update:isShowModal']);
     transition: all 0.4s linear;
 
     @media (max-width: 1919px) {
-        width: 720px;
-        padding: 48px 40px;
+        & {
+            width: 720px;
+            padding: 48px 40px;
+        }
     }
 
-    @media (max-width: 764px) {
-        width: 100%;
-        height: 100%;
-        padding: 0 16px;
+    @media (max-width: 767px) {
+        & {
+            width: 100%;
+            height: 100%;
+            padding: 0 16px;
+        }
     }
 }
 
@@ -95,8 +99,10 @@ defineEmits(['update:isShowModal']);
     height: 100%;
     overflow: auto;
 
-    @media (max-width: 764px) {
-        padding: 24px 0;
+    @media (max-width: 767px) {
+        & {
+            padding: 24px 0;
+        }
     }
 }
 </style>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
+import BaseAction from '@/components/base/BaseAction.vue';
 import IconMenu from '@/components/icons/IconMenu.vue';
 import IconLogo from '@/components/icons/IconLogo.vue';
-import BaseAction from '@/components/base/BaseAction.vue';
 
 const isOpenMobileMenu: Ref<boolean> = ref(false);
 </script>
@@ -17,13 +17,27 @@ const isOpenMobileMenu: Ref<boolean> = ref(false);
     </RouterLink>
     <nav class="nav" :class="{open: isOpenMobileMenu}">
         <ul class="nav__list">
-            <li class="nav__route">УСЛУГИ</li>
-            <li class="nav__route">АБОНЕМЕНТЫ</li>
-            <li class="nav__route">ПОЧЕМУ МЫ</li>
-            <li class="nav__route">ОБОРУДОВАНИЕ</li>
-            <li class="nav__route">АКЦИИ</li>
-            <li class="nav__route">FAQ</li>
-            <li class="nav__route">КОНТАКТЫ</li>
+            <li class="nav__route">
+                <RouterLink to="/#">УСЛУГИ</RouterLink>
+            </li>
+            <li class="nav__route">
+                <RouterLink to="/#">АБОНЕМЕНТЫ</RouterLink>
+            </li>
+            <li class="nav__route">
+                <RouterLink to="/#">ПОЧЕМУ МЫ</RouterLink>
+            </li>
+            <li class="nav__route">
+                <RouterLink to="/#">ОБОРУДОВАНИЕ</RouterLink>
+            </li>
+            <li class="nav__route">
+                <RouterLink to="/#">АКЦИИ</RouterLink>
+            </li>
+            <li class="nav__route">
+                <RouterLink to="/#">FAQ</RouterLink>
+            </li>
+            <li class="nav__route">
+                <RouterLink to="/#">КОНТАКТЫ</RouterLink>
+            </li>
         </ul>
         <BaseAction class="header__action__1" />
     </nav>
@@ -80,8 +94,10 @@ const isOpenMobileMenu: Ref<boolean> = ref(false);
     height: 60px;
 
     @media (max-width: 767px) {
-        width: 112px;
-        height: 38px;
+        & {
+            width: 112px;
+            height: 38px;
+        }
     }
 }
 
@@ -132,7 +148,7 @@ const isOpenMobileMenu: Ref<boolean> = ref(false);
         }
     }
 
-    @media (max-width: 1919px) {
+    @media (max-width: 767px) {
         & {
             margin-bottom: 51px;
         }
@@ -160,13 +176,23 @@ const isOpenMobileMenu: Ref<boolean> = ref(false);
             font-size: 20px;
         }
     }
+
+    & > a {
+        color: inherit;
+    }
+
+    &:hover > a {
+        color: #c2ab81;
+    }
 }
 
 .header__action__1 {
     display: none;
 
     @media (max-width: 767px) {
-        display: block;
+        & {
+            display: block;
+        }
     }
 }
 

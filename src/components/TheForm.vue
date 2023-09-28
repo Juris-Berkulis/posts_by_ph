@@ -111,8 +111,20 @@ onBeforeUnmount(() => {
 <template>
 <h2 class="title">{{isRequestSent ? 'Заявка отправлена' : 'Оставить заявку' }}</h2>
 <form class="form" v-if="!isRequestSent" @submit.prevent="submit" method="post">
-    <BaseInput class="form__input" v-model:inputedValue="inputedName" :error="errorForInputedName" type="text" placeholder="Имя" />
-    <BaseInput class="form__input" v-model:inputedValue="inputedEmail" :error="errorForInputedEmail" type="email" placeholder="Email" />
+    <BaseInput 
+        class="form__input" 
+        v-model:inputedValue="inputedName" 
+        :error="errorForInputedName" 
+        type="text" 
+        placeholder="Имя" 
+    />
+    <BaseInput 
+        class="form__input" 
+        v-model:inputedValue="inputedEmail" 
+        :error="errorForInputedEmail" 
+        type="email" 
+        placeholder="Email" 
+    />
     <BaseLoader class="loader" v-if="isLoading" />
     <BaseBtn class="form__btn" v-else type="submit">Отправить</BaseBtn>
 </form>

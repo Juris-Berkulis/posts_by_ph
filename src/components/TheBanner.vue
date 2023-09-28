@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
+import TheModal from '@/components/TheModal.vue';
+import TheForm from '@/components/TheForm.vue';
 import BaseBtn from '@/components/base/BaseBtn.vue';
 import banner from '@/assets/images/banner.png';
-import TheModal from './TheModal.vue';
-import TheForm from './TheForm.vue';
 
 const sectionBg: string = `url(${banner})`;
 
@@ -62,14 +62,18 @@ const isShowModal: Ref<boolean> = ref(false);
     text-transform: uppercase;
 
     @media (max-width: 1919px) {
-        width: 500px;
-        font-size: 38px;
+        & {
+            width: 500px;
+            font-size: 38px;
+        }
     }
 
-    @media (max-width: 764px) {
-        width: 260px;
-        margin-bottom: 20px;
-        font-size: 20px;
+    @media (max-width: 767px) {
+        & {
+            width: 260px;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
     }
 }
 
@@ -83,17 +87,21 @@ const isShowModal: Ref<boolean> = ref(false);
     line-height: 150%;
     opacity: 0.79;
 
-    @media (max-width: 764px) {
-        margin-bottom: 20px;
-        font-size: 14px;
+    @media (max-width: 767px) {
+        & {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
     }
 }
 
 .banner__btn {
     padding: 21px 78px;
 
-    @media (max-width: 764px) {
-        padding: 14px 46px;
+    @media (max-width: 767px) {
+        & {
+            padding: 14px 46px;
+        }
     }
 }
 </style>
