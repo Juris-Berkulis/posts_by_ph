@@ -16,7 +16,7 @@ defineProps<Props>();
     top: calc(100% + 4px);
     left: 0;
     color: #ff5858;
-    font-family: inherit;
+    font-family: Montserrat;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
