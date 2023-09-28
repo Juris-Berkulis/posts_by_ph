@@ -2,10 +2,10 @@
 import { ref, type Ref } from 'vue';
 import PostsListItem from '@/components/PostsListItem.vue';
 import BaseBtn from '@/components/base/BaseBtn.vue';
+import BaseLoader from '@/components/base/BaseLoader.vue';
 import { useFetch } from '@/composables/fetch';
 import { placeholderUrl } from '@/consts';
 import { type Post, type Card, type Photo, type Author } from '@/types/response';
-import BaseLoader from './base/BaseLoader.vue';
 
 const imagesUrlObj: {[key: number]: string} = {};
 const authorsNameObj: {[key: number]: string} = {};
@@ -14,47 +14,42 @@ const startValue: Ref<number> = ref(0);
 const postsList: Ref<Card[]> = ref([]);
 const isLoading: Ref<boolean> = ref(false);
 
+const getAdditionalDataForCards = async <T extends Photo & Author>(idsSet: Set<number>, hashObj: {[key: number]: any}, pathPart: `/${string}?`, fieldForAdd: keyof T): Promise<void> => {
+    let path: string = pathPart;
+
+    idsSet.forEach((id: number) => {
+        if (!hashObj[id]) path += `id=${id}&`;
+    });
+
+    if (path !== pathPart) {
+        const {fetchData} = await useFetch(`${placeholderUrl}${path}`) as {fetchData: Ref<T[] | null>};
+
+        if (fetchData.value) {
+            fetchData.value.forEach((item: T) => {
+                hashObj[item.id] = item[fieldForAdd];
+            });
+        }
+    }
+};
+
 const addPosts = async (): Promise<void> => {
     isLoading.value = true;
+
     const {fetchData} = await useFetch(`${placeholderUrl}/posts?_start=${startValue.value}&_limit=${limit}`) as {fetchData: Ref<Post[] | null>};
 
     if (fetchData.value) {
         const imageIds: Set<number> = new Set();
         const authorIds: Set<number> = new Set();
-            fetchData.value.forEach((post: Post) => {
+
+        fetchData.value.forEach((post: Post) => {
             imageIds.add(post.id);
             authorIds.add(post.userId);
         });
 
-        let paramsStrForImages: string = '/photos?';
-        imageIds.forEach((id: number) => {
-            if (!imagesUrlObj[id]) paramsStrForImages += `id=${id}&`
-        });
+        const imagesPromise: Promise<void> = getAdditionalDataForCards(imageIds, imagesUrlObj, '/photos?', 'url');
+        const authorsPromise: Promise<void> = getAdditionalDataForCards(authorIds, authorsNameObj, '/users?', 'name');
 
-        if (paramsStrForImages !== '/photos?') {
-            const {fetchData} = await useFetch(`${placeholderUrl}${paramsStrForImages}`) as {fetchData: Ref<Photo[] | null>};
-
-            if (fetchData.value) {
-                fetchData.value.forEach((photo: Photo) => {
-                    imagesUrlObj[photo.id] = photo.url;
-                });
-            }
-        }
-
-        let paramsStrForAuthorsName: string = '/users?';
-        authorIds.forEach((userId: number) => {
-            if (!authorsNameObj[userId]) paramsStrForAuthorsName += `id=${userId}&`
-        });
-
-        if (paramsStrForAuthorsName !== '/users?') {
-            const {fetchData} = await useFetch(`${placeholderUrl}${paramsStrForAuthorsName}`) as {fetchData: Ref<Author[] | null>};
-
-            if (fetchData.value) {
-                fetchData.value.forEach((author: Author) => {
-                    authorsNameObj[author.id] = author.name;
-                });
-            }
-        }
+        await Promise.all([imagesPromise, authorsPromise]);
 
         postsList.value.push(...fetchData.value.map((post: Post) => {
             const card: Card = {...post, image: imagesUrlObj[post.id], authorName: authorsNameObj[post.userId]};
