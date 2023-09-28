@@ -5,14 +5,17 @@ import BaseBtn from '@/components/base/BaseBtn.vue';
 import { useFetch } from '@/composables/fetch';
 import { placeholderUrl } from '@/consts';
 import { type Post, type Card, type Photo, type Author } from '@/types/response';
+import BaseLoader from './base/BaseLoader.vue';
 
 const imagesUrlObj: {[key: number]: string} = {};
 const authorsNameObj: {[key: number]: string} = {};
 const limit: number = 5;
 const startValue: Ref<number> = ref(0);
 const postsList: Ref<Card[]> = ref([]);
+const isLoading: Ref<boolean> = ref(false);
 
 const addPosts = async (): Promise<void> => {
+    isLoading.value = true;
     const {fetchData} = await useFetch(`${placeholderUrl}/posts?_start=${startValue.value}&_limit=${limit}`) as {fetchData: Ref<Post[] | null>};
 
     if (fetchData.value) {
@@ -60,6 +63,8 @@ const addPosts = async (): Promise<void> => {
 
         startValue.value += limit;
     }
+
+    isLoading.value = false;
 };
 
 addPosts();
@@ -71,7 +76,8 @@ addPosts();
     <ul class="postsList__list" v-if="postsList">
         <PostsListItem v-for="post of postsList" :key="post.id" :post="post" />
     </ul>
-    <BaseBtn class="postsList__btn" v-if="postsList.length < 30" @click="addPosts" type="button">ЗАГРУЗИТЬ ЕЩЕ</BaseBtn>
+    <BaseLoader class="loader" v-if="isLoading" />
+    <BaseBtn class="postsList__btn" v-else-if="postsList.length < 30" @click="addPosts" type="button">ЗАГРУЗИТЬ ЕЩЕ</BaseBtn>
 </section>
 </template>
 
@@ -127,6 +133,11 @@ addPosts();
         grid-gap: 20px;
         margin-bottom: 38px;
     }
+}
+
+.loader {
+    height: 60px;
+    color: #c2ab81;
 }
 
 .postsList__btn {
