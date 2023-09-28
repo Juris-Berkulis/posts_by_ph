@@ -71,7 +71,7 @@ addPosts();
     <ul class="postsList__list" v-if="postsList">
         <PostsListItem v-for="post of postsList" :key="post.id" :post="post" />
     </ul>
-    <BaseBtn class="postsList__btn" v-if="postsList.length < 30" @click="addPosts">ЗАГРУЗИТЬ ЕЩЕ</BaseBtn>
+    <BaseBtn class="postsList__btn" v-if="postsList.length < 30" @click="addPosts" type="button">ЗАГРУЗИТЬ ЕЩЕ</BaseBtn>
 </section>
 </template>
 

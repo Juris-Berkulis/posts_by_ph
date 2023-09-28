@@ -8,6 +8,10 @@
 
 body {
   min-height: 100vh;
+
+  &:has(#modal) {
+    overflow: hidden;
+  }
 }
 
 button {
@@ -28,4 +32,10 @@ ul {
 
 img {
   display: block;
+}
+
+input {
+  width: 100%;
+  outline: none;
+  border: none;
 }

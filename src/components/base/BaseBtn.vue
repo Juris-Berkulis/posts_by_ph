@@ -2,7 +2,7 @@
 </script>
 
 <template>
-<button class="btn" type="button">
+<button class="btn">
     <span class="btn__text">
         <slot>ОСТАВИТЬ ЗАЯВКУ</slot>
     </span>

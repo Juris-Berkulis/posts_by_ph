@@ -1,16 +1,24 @@
 <script setup lang="ts">
+import { ref, type Ref } from 'vue';
 import BaseBtn from '@/components/base/BaseBtn.vue';
 import banner from '@/assets/images/banner.png';
+import TheModal from './TheModal.vue';
+import TheForm from './TheForm.vue';
 
 const sectionBg: string = `url(${banner})`;
+
+const isShowModal: Ref<boolean> = ref(false);
 </script>
 
 <template>
 <section class="banner">
     <h1 class="banner__title">Полет Илона Маска и DOGIE COIN</h1>
     <p class="banner__description">В прошлый четверг все офигели от полета DOGIE COIN на марс.</p>
-    <BaseBtn class="banner__btn">ОСТАВИТЬ ЗАЯВКУ</BaseBtn>
+    <BaseBtn class="banner__btn" @click="isShowModal = true" type="button">ОСТАВИТЬ ЗАЯВКУ</BaseBtn>
 </section>
+<TheModal v-model:isShowModal="isShowModal">
+    <TheForm />
+</TheModal>
 </template>
 
 <style scoped lang="scss">
