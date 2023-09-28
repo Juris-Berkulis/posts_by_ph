@@ -135,6 +135,10 @@ addPosts();
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 30px;
 
+    &:last-child {
+        margin-bottom: 0;
+    }
+
     @media (max-width: 1919px) {
         & {
             grid-template-columns: repeat(2, 1fr);

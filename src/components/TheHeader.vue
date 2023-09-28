@@ -4,6 +4,21 @@ import BaseAction from '@/components/base/BaseAction.vue';
 import IconMenu from '@/components/icons/IconMenu.vue';
 import IconLogo from '@/components/icons/IconLogo.vue';
 
+interface RouteObj {
+    href: `/${string}`, 
+    text: string,
+};
+
+const routesList: RouteObj[] = [
+    {href: '/#', text: 'УСЛУГИ'},
+    {href: '/#', text: 'АБОНЕМЕНТЫ'},
+    {href: '/#', text: 'ПОЧЕМУ МЫ'},
+    {href: '/#', text: 'ОБОРУДОВАНИЕ'},
+    {href: '/#', text: 'АКЦИИ'},
+    {href: '/#', text: 'FAQ'},
+    {href: '/#', text: 'КОНТАКТЫ'},
+];
+
 const isOpenMobileMenu: Ref<boolean> = ref(false);
 </script>
 
@@ -17,26 +32,8 @@ const isOpenMobileMenu: Ref<boolean> = ref(false);
     </RouterLink>
     <nav class="nav" :class="{open: isOpenMobileMenu}">
         <ul class="nav__list">
-            <li class="nav__route">
-                <RouterLink to="/#">УСЛУГИ</RouterLink>
-            </li>
-            <li class="nav__route">
-                <RouterLink to="/#">АБОНЕМЕНТЫ</RouterLink>
-            </li>
-            <li class="nav__route">
-                <RouterLink to="/#">ПОЧЕМУ МЫ</RouterLink>
-            </li>
-            <li class="nav__route">
-                <RouterLink to="/#">ОБОРУДОВАНИЕ</RouterLink>
-            </li>
-            <li class="nav__route">
-                <RouterLink to="/#">АКЦИИ</RouterLink>
-            </li>
-            <li class="nav__route">
-                <RouterLink to="/#">FAQ</RouterLink>
-            </li>
-            <li class="nav__route">
-                <RouterLink to="/#">КОНТАКТЫ</RouterLink>
+            <li class="nav__route" v-for="route of routesList" :key="route.text">
+                <RouterLink :to="route.href">{{ route.text }}</RouterLink>
             </li>
         </ul>
         <BaseAction class="header__action__1" />
