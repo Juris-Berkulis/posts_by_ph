@@ -150,6 +150,8 @@ const isOpenMobileMenu: Ref<boolean> = ref(false);
     @media (max-width: 1919px) {
         & {
             font-size: 36px;
+            color: transparent;
+            -webkit-text-stroke: 1px #808080;
         }
     }
 

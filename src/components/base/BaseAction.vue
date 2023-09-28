@@ -1,6 +1,11 @@
 <script setup lang="ts">
+import { ref, type Ref } from 'vue';
+import TheModal from '@/components/TheModal.vue';
+import TheForm from '@/components/TheForm.vue';
 import BaseBtn from '@/components/base/BaseBtn.vue';
 import IconPhone from '@/components/icons/IconPhone.vue';
+
+const isShowModal: Ref<boolean> = ref(false);
 </script>
 
 <template>
@@ -8,7 +13,10 @@ import IconPhone from '@/components/icons/IconPhone.vue';
     <a class="action__phone" href="tel:+75555555555">
         <IconPhone />
     </a>
-    <BaseBtn class="action__btn">ОСТАВИТЬ ЗАЯВКУ</BaseBtn>
+    <BaseBtn class="action__btn" @click="isShowModal = true">ОСТАВИТЬ ЗАЯВКУ</BaseBtn>
+    <TheModal v-model:isShowModal="isShowModal">
+        <TheForm />
+    </TheModal>
 </div>
 </template>
 

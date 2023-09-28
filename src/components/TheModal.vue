@@ -48,6 +48,7 @@ defineEmits(['update:isShowModal']);
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 99;
     transition: all 0.4s linear;
 }
 
