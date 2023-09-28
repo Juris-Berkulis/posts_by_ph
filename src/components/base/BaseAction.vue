@@ -26,7 +26,7 @@ const isShowModal: Ref<boolean> = ref(false);
     margin-right: 12px;
     padding: 14px 30px;
     display: inline-block;
-    color: #ffffff;
+    color: #cccccc;
     line-height: 0;
     text-align: center;
     z-index: 0;
@@ -40,8 +40,17 @@ const isShowModal: Ref<boolean> = ref(false);
         left: 9px;
         transform: skewX(-17deg);
         background-color: transparent;
-        border: 1px solid #ffffff;
+        border: 1px solid #cccccc;
         z-index: -1;
+        transition: inherit;
+    }
+
+    &:hover {
+        color: #131313;
+
+        &::before {
+            background-color: #cccccc;
+        }
     }
 
     @media (max-width: 1919px) {

@@ -9,9 +9,14 @@
 body {
   min-height: 100vh;
 
-  &:has(.header.open), 
   &:has(#modal) {
     overflow: hidden;
+  }
+
+  @media (max-width: 1919px) {
+    &:has(.header.open) {
+      overflow: hidden;
+    }
   }
 }
 

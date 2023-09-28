@@ -34,6 +34,7 @@ const isShowModal: Ref<boolean> = ref(false);
     background-size: cover;
     background-repeat: no-repeat;
     background-color: lightgray;
+    border-radius: 60px 60px 0 0;
 
     @media (max-width: 1919px) {
         & {
@@ -46,6 +47,7 @@ const isShowModal: Ref<boolean> = ref(false);
         & {
             height: 495px;
             padding: 52px 14px;
+            border-radius: 30px 30px 0px 0px;
         }
     }
 }

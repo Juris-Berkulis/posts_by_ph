@@ -20,6 +20,10 @@
     line-height: 150%;
     z-index: 0;
 
+    &:hover {
+        color: #cccccc;
+    }
+
     &::before, 
     &::after {
         content: '';
@@ -27,6 +31,7 @@
         top: 0;
         bottom: 0;
         transform: skewX(-17deg);
+        transition: inherit;
     }
 
     &::before {
@@ -41,6 +46,14 @@
         width: 5px;
         background-color: #ffffff;
         cursor: default;
+    }
+
+    &:hover::before {
+        background-color: #9e8c6b;
+    }
+
+    &:hover::after {
+        background-color: #cccccc;
     }
 
     &__text {

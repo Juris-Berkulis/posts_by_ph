@@ -112,5 +112,9 @@ const cardImage: ComputedRef<string> = computed(() => `url(${props.post.image})`
     font-weight: 600;
     line-height: normal;
     text-align: center;
+
+    &:hover {
+        background-color: #333333;
+    }
 }
 </style>

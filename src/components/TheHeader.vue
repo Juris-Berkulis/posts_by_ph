@@ -82,6 +82,10 @@ const isOpenMobileMenu: Ref<boolean> = ref(false);
         & {
             display: block;
             color: #ffffff;
+
+            &:hover {
+                color: #cccccc;
+            }
         }
     }
 }
