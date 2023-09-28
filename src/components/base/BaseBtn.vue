@@ -12,8 +12,7 @@
 <style scoped lang="scss">
 .btn {
     position: relative;
-    color: #FFF;
-    text-align: right;
+    color: #ffffff;
     font-family: Montserrat;
     font-size: 12px;
     font-style: normal;

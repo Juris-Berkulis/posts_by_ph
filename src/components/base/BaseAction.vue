@@ -1,0 +1,70 @@
+<script setup lang="ts">
+import BaseBtn from '@/components/base/BaseBtn.vue';
+import IconPhone from '@/components/icons/IconPhone.vue';
+</script>
+
+<template>
+<div class="action">
+    <a class="action__phone" href="tel:+75555555555">
+        <IconPhone />
+    </a>
+    <BaseBtn class="action__btn">ОСТАВИТЬ ЗАЯВКУ</BaseBtn>
+</div>
+</template>
+
+<style scoped lang="scss">
+.action__phone {
+    position: relative;
+    margin-right: 12px;
+    padding: 14px 30px;
+    display: inline-block;
+    color: #ffffff;
+    line-height: 0;
+    text-align: center;
+    z-index: 0;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 9px;;
+        bottom: 0;
+        left: 9px;
+        transform: skewX(-17deg);
+        background-color: transparent;
+        border: 1px solid #ffffff;
+        z-index: -1;
+    }
+
+    @media (max-width: 1919px) {
+        & {
+            margin-right: -12px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        & {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 6px;
+        }
+    }
+}
+
+.action__btn {
+    margin-right: 9px;
+    padding: 21px 78px;
+
+    @media (max-width: 1919px) {
+        & {
+            padding: 21px 38px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        & {
+            width: 100%;
+        }
+    }
+}
+</style>

@@ -36,13 +36,17 @@ const isShowModal: Ref<boolean> = ref(false);
     background-color: lightgray;
 
     @media (max-width: 1919px) {
-        height: 907px;
-        padding: 76px 49px;
+        & {
+            height: 907px;
+            padding: 76px 49px;
+        }
     }
 
-    @media (max-width: 1919px) {
-        height: 495px;
-        padding: 52px 14px;
+    @media (max-width: 767px) {
+        & {
+            height: 495px;
+            padding: 52px 14px;
+        }
     }
 }
 
@@ -58,11 +62,12 @@ const isShowModal: Ref<boolean> = ref(false);
     text-transform: uppercase;
 
     @media (max-width: 1919px) {
+        width: 500px;
         font-size: 38px;
     }
 
     @media (max-width: 764px) {
-        width: 100%;
+        width: 260px;
         margin-bottom: 20px;
         font-size: 20px;
     }
